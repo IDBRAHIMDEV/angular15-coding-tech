@@ -1,0 +1,30 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{ title }}</h1>
+         
+        <h3>{{ course }}</h3>
+
+
+        <img [src]="myImage" width="300px" alt="">
+        
+        <div class="form-group">
+            <label for="course"></label>
+            <input [(ngModel)]="course.title" type="text" id="course" class="form-control">
+        </div>
+
+        
+        <button *ngIf="edit" (click)="updateCourse()" class="btn btn-warning my-2 ">Update</button>
+        <button *ngIf="!edit" (click)="addCourse()" class="btn btn-primary my-2">Add</button>
+    
+        
+        <ul class="list-group">
+            <li (dblclick)="deleteCourse(course.id)" class="list-group-item" *ngFor="let course of courses; index as i">
+                {{ course.title }} - {{ i }}
+            
+                <button (click)="editCourse(course)" class="btn btn-warning me-2">Edit</button>
+                <button (click)="deleteCourse(course.id)" class="btn btn-danger">Delete</button>            
+            </li>
+        </ul>
+    </div>
+</div>

@@ -17,7 +17,7 @@ export class CoursesComponent {
     {id: '3', title: "learn Laravel"},
   ]
 
-  course: Course | null = {
+  course: Course = {
     id: '0',
     title: ""
   }
@@ -83,7 +83,10 @@ export class CoursesComponent {
 
 
   updateCourse() {
-    this.course = null
+    this.course = {
+      id: "0",
+      title: ""
+    }
 
     this.edit = false
   }

@@ -1,4 +1,4 @@
-<div class="card my-2">
+<div class="card my-2" [ngClass]="{'border-success': first, 'border-danger': last, 'border-primary': odd, 'border-warning': even}">
     <img class="card-img-top" [src]="myUser.avatar_url" alt="Title">
     <div class="card-body">
         <h4 class="card-title">{{ myUser.login }}</h4>

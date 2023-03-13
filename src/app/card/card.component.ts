@@ -8,6 +8,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CardComponent {
 
   @Input('my-user') myUser: any = null
+  @Input('first') first: any = null
+  @Input('last') last: any = null
+  @Input() odd: any = null
+  @Input() even: any = null
 
   @Output() deleteUser = new EventEmitter()
 

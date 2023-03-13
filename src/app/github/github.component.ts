@@ -13,6 +13,8 @@ export class GithubComponent implements OnInit {
 
   search: string = ''
 
+  count: number = 0
+
   ngOnInit() {
     this.getAllUser()
   }
@@ -20,6 +22,7 @@ export class GithubComponent implements OnInit {
   getAllUser() {
     this.githubService.getUsers().subscribe((response: any) => {
       this.users = response
+      this.count = this.users.length
     })
   }
 
@@ -32,6 +35,9 @@ export class GithubComponent implements OnInit {
   searchUser() {
     this.githubService.searchUser(this.search).subscribe((response: any) => {
       this.users = response.items
+      this.count = response.total_count
+
+      console.log(this.count)
     })
   }
 }

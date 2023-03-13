@@ -13,7 +13,25 @@
 
 
 <div class="row">
-    <div class="col-md-3" *ngFor="let user of users">
-       <app-card [my-user]="user" (deleteUser)="destroyUser($event)"></app-card>
+
+    <div class="col-md-6 mx-auto">
+        <div class="alert alert-dismissible alert-success" *ngIf="count">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <a href="#" class="alert-link">{{ count }}</a> users found.
+        </div>
+
+        <div class="alert alert-dismissible alert-danger" *ngIf="count == 0">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+             <a href="#" class="alert-link">No result</a> users not found.
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3" *ngFor="let user of users; let i = index; let f = first; let l = last; let e = even; let o = odd; let c = count">
+       <p>
+        first : {{ f }} - last {{ l }} - even {{ e }} - odd {{ o }} - count {{ c }}
+       </p>
+        <app-card [even]="e" [odd]="o" [first]="f" [last]="l" [my-user]="user" (deleteUser)="destroyUser($event)"></app-card>
 </div>
 

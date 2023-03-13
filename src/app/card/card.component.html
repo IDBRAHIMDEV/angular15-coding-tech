@@ -4,6 +4,8 @@
         <h4 class="card-title">{{ myUser.login }}</h4>
         <div class="card-text">
             <a [href]="myUser.html_url" class="btn btn-primary">Read more...</a>
+            <button class="btn btn-danger ms-2" (click)="removeUser(myUser)">Delete</button>
+            <button class="btn btn-warning ms-2" (click)="test($event)">Test</button>
         </div>
     </div>
 </div>

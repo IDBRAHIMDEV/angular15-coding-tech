@@ -11,6 +11,8 @@ export class GithubComponent implements OnInit {
 
   users: any[] = [];
 
+  search: string = ''
+
   ngOnInit() {
     this.getAllUser()
   }
@@ -18,6 +20,18 @@ export class GithubComponent implements OnInit {
   getAllUser() {
     this.githubService.getUsers().subscribe((response: any) => {
       this.users = response
+    })
+  }
+
+  destroyUser(data: any) {
+    console.log('je suis le papa', data)
+
+    this.users = this.users.filter(user => user.id !== data.user.id)
+  }
+
+  searchUser() {
+    this.githubService.searchUser(this.search).subscribe((response: any) => {
+      this.users = response.items
     })
   }
 }

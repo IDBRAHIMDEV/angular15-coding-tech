@@ -11,6 +11,9 @@ import { ListComponent } from './list/list.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
+import { GithubComponent } from './github/github.component';
+import { HttpClientModule } from "@angular/common/http";
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,15 @@ import { FormsModule } from '@angular/forms';
     FormComponent,
     ListComponent,
     FooterComponent,
-    CoursesComponent
+    CoursesComponent,
+    GithubComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

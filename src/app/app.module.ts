@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { GithubComponent } from './github/github.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CardComponent } from './card/card.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CardComponent } from './card/card.component';
     FooterComponent,
     CoursesComponent,
     GithubComponent,
-    CardComponent
+    CardComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

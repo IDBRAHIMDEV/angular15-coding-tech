@@ -4,6 +4,16 @@
       "title": "angular 15 for beginners",
       "content": "learn how to interact with backend",
       "id": 1
+    },
+    {
+      "title": "Symfony 4",
+      "content": "develope a meduim web application with php and symfony 4 framework",
+      "id": 3
+    },
+    {
+      "title": "Django framework",
+      "content": "build a smart app with python and django in the backend",
+      "id": 4
     }
   ],
   "categories": []

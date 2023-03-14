@@ -16,18 +16,18 @@ export class ArticleService {
   }
 
   persistArticle(data: Article) {
-    return this.http.post(this.baseUrl, data)
+    return this.http.post<Article>(this.baseUrl, data)
   }
 
   getArticle(id: number) {
     return this.http.get<Article>(`${this.baseUrl}/${id}`)
   }
 
-  putArticle(id: number, data: Article) {
-    return this.http.put(`${this.baseUrl}/${id}`, data)
+  putArticle(id: number | undefined, data: Article) {
+    return this.http.put<Article>(`${this.baseUrl}/${id}`, data)
   }
 
-  deleteArticle(id: number) {
+  deleteArticle(id: number | undefined) {
     return this.http.delete(`${this.baseUrl}/${id}`)
   }
 }

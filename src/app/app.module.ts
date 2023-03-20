@@ -15,6 +15,9 @@ import { GithubComponent } from './github/github.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CardComponent } from './card/card.component';
 import { BlogComponent } from './blog/blog.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { BlogComponent } from './blog/blog.component';
     CoursesComponent,
     GithubComponent,
     CardComponent,
-    BlogComponent
+    BlogComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

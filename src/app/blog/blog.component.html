@@ -94,7 +94,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let article of articles">
-                        <td>{{ article.id }}</td>
+                        <td><a [routerLink]="['/blog', 'post', article.id]">{{ article.id }}</a> </td>
                         <td>{{ article.title }}</td>
                         <td>{{ article.content }}</td>
                         <td class="text-right">
@@ -121,7 +121,10 @@
             <div class="card my-2">
                 <div class="card-body">
                     <h4 class="card-title">{{ article.title }}</h4>
-                    <p class="card-text">{{ article.content }}</p>
+                    <div class="card-text">
+                       <p>{{ article.content }}</p> 
+                       <a class="btn btn-success" [routerLink]="['/blog', 'post', article.id]">Read more</a>
+                    </div>
                 </div>
             </div>
         </div>

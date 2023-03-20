@@ -10,7 +10,7 @@ import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoursesComponent } from './courses/courses.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GithubComponent } from './github/github.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CardComponent } from './card/card.component';
@@ -34,6 +34,7 @@ import { BlogComponent } from './blog/blog.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

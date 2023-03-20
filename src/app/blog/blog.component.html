@@ -6,7 +6,7 @@
         <h1>List of articles</h1>
     </div>
     <div class="col-md-6" align="right">
-        <button class="btn btn-success">
+        <button class="btn btn-success" (click)="toggleForm()">
             <i class="fa fa-plus"></i> add
         </button>
     </div>
@@ -17,24 +17,52 @@
 +(.form-group>label.form-label{Content}[for=content]+textarea[rows=3].form-control#content)
 +(.d-grid>button.my-2.btn.btn-success>i.fa.fa-send) -->
 
-<div class="row">
+<div class="row" *ngIf="showForm">
     <div class="col-md-4 mx-auto">
+        <form [formGroup]="articleForm" (ngSubmit)="saveArticle()">        
         <div class="form-group">
             <label for="title" class="form-label">Title</label>
-            <input [(ngModel)]="myArticle.title" type="text" name="" id="title" class="form-control">
+            <input formControlName="title" type="text" name="title" id="title" class="form-control">
+            <div class="alert alert-danger" *ngIf="articleForm.get('title')?.invalid && (articleForm.get('title')?.touched || articleForm.get('title')?.dirty)">
+                <div *ngIf="articleForm.get('title')?.errors?.['required']">
+                    this field is required
+                </div>
+
+                <div *ngIf="articleForm.get('title')?.errors?.['minlength']">
+                    this field should be great than 4 caracters
+                </div>
+
+                <div *ngIf="articleForm.get('title')?.errors?.['maxlength']">
+                    this max is 10 caracters
+                </div>
+
+                <div *ngIf="articleForm.get('title')?.errors?.['pattern']">
+                    this field is not a alphanumeric.
+                </div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
         <div class="form-group mt-2">
             <label for="content" class="form-label">Content</label>
-            <textarea [(ngModel)]="myArticle.content" name="" id="content" cols="30" rows="3" class="form-control"></textarea>
+            <textarea formControlName="content" name="content" id="content" cols="30" rows="3" class="form-control"></textarea>
+            
         </div>
         <div class="d-grid">
-            <button class="my-2 btn btn-success" (click)="saveArticle()" *ngIf="!editable">
-                <i class="fa fa-send"></i> Submit
-            </button>
-            <button class="my-2 btn btn-warning" (click)="updateArticle()" *ngIf="editable">
-                <i class="fa fa-refresh"></i> Update
-            </button>
+            <ng-container *ngIf="!editable">
+                <button [disabled]="articleForm.invalid" class="my-2 btn btn-success" type="submit">
+                    <i class="fa fa-send"></i> Submit
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="editable">
+                <button class="my-2 btn btn-warning" (click)="updateArticle()">
+                    <i class="fa fa-refresh"></i> Update
+                </button>
+            </ng-container>
         </div>
+
+    </form>
     </div>
 </div>
 
@@ -49,44 +77,54 @@
     </div>
 </div>
 
-<div class="row mt-4" *ngIf="list">
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>title</th>
-                    <th>content</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let article of articles">
-                    <td>{{ article.id }}</td>
-                    <td>{{ article.title }}</td>
-                    <td>{{ article.content }}</td>
-                    <td class="text-right">
-                        <button class="btn btn-warning be-1" (click)="editArticle(article)">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                        <button class="btn btn-danger" (click)="destroyArticle(article.id)">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-               
-            </tbody>
-        </table>
-    </div>
-</div>
+<ng-container *ngIf="list; then myList; else myCard"></ng-container>
 
-<div class="row mt-4" *ngIf="!list">
-    <div class="col-md-4"  *ngFor="let article of articles">
-        <div class="card my-2">
-            <div class="card-body">
-                <h4 class="card-title">{{ article.title }}</h4>
-                <p class="card-text">{{ article.content }}</p>
+<ng-template #myList>
+
+    <div class="row mt-4" #myList>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>title</th>
+                        <th>content</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let article of articles">
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.content }}</td>
+                        <td class="text-right">
+                            <button class="btn btn-warning be-1" (click)="editArticle(article)">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn btn-danger" (click)="destroyArticle(article.id)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #myCard>
+
+    <div class="row mt-4">
+        <div class="col-md-4"  *ngFor="let article of articles">
+            <div class="card my-2">
+                <div class="card-body">
+                    <h4 class="card-title">{{ article.title }}</h4>
+                    <p class="card-text">{{ article.content }}</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+</ng-template>
